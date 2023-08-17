@@ -1,0 +1,5 @@
+cc_binary(
+    name = "s3_client",
+    srcs = ["s3_client.cc"],
+    deps = ["@aws-sdk-cpp//:s3"],
+)

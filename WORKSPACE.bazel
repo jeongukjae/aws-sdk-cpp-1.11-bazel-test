@@ -1,0 +1,156 @@
+workspace(name = "aws-sdk-cpp-test")
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "boringssl",
+    patch_cmds = [
+        """sed -i.bak 's/bio.c",/bio.c","src\\/decrepit\\/bio\\/base64_bio.c",/g' BUILD.generated.bzl""",
+    ],
+    sha256 = "a9c3b03657d507975a32732f04563132b4553c20747cec6dc04de475c8bdf29f",
+    strip_prefix = "boringssl-80ca9f9f6ece29ab132cce4cf807a9465a18cfac",
+    urls = [
+        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/boringssl/archive/80ca9f9f6ece29ab132cce4cf807a9465a18cfac.tar.gz",
+        "https://github.com/google/boringssl/archive/80ca9f9f6ece29ab132cce4cf807a9465a18cfac.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "curl",
+    build_file = "//third_party/curl:curl.BUILD",
+    sha256 = "2e5a9b8fcdc095bdd2f079561f369de71c5eb3b80f00a702fbe9a8b8d9897891",
+    strip_prefix = "curl-8.1.2",
+    urls = [
+        "https://curl.haxx.se/download/curl-8.1.2.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-c-common",
+    build_file = "//third_party/aws-c-common:aws-c-common.BUILD",
+    sha256 = "9b62ab1dcece3107810ea4f4511fe8e1e010a83cb0cb502b6ec685ce752a7b0c",
+    strip_prefix = "aws-c-common-0.9.0",
+    urls = [
+        "https://github.com/awslabs/aws-c-common/archive/v0.9.0.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-c-cal",
+    build_file = "//third_party/aws-c-cal:aws-c-cal.BUILD",
+    sha256 = "52df95150a8548ac35a0e4b6f59fbdebff27e4124c0b7e5eaa969ed3ba62fc82",
+    strip_prefix = "aws-c-cal-0.6.1",
+    urls = [
+        "https://github.com/awslabs/aws-c-cal/archive/v0.6.1.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-checksums",
+    build_file = "//third_party/aws-checksums:aws-checksums.BUILD",
+    sha256 = "83c1fbae826631361a529e9565e64a942c412baaec6b705ae5da3f056b97b958",
+    strip_prefix = "aws-checksums-0.1.17",
+    urls = [
+        "https://github.com/awslabs/aws-checksums/archive/v0.1.17.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-c-io",
+    build_file = "//third_party/aws-c-io:aws-c-io.BUILD",
+    sha256 = "4286b699788c0680f0bd1ed7112f20f6e251cb3f0636ecfc6235f97e6e76fd62",
+    strip_prefix = "aws-c-io-0.13.31",
+    urls = [
+        "https://github.com/awslabs/aws-c-io/archive/v0.13.31.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-c-mqtt",
+    build_file = "//third_party/aws-c-mqtt:aws-c-mqtt.BUILD",
+    sha256 = "c536bafc28e7c0e7bc0f8779de1e973e493a8cb4270929ef1a00c9a41d7c4d8c",
+    strip_prefix = "aws-c-mqtt-0.9.3",
+    urls = [
+        "https://github.com/awslabs/aws-c-mqtt/archive/v0.9.3.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-c-compression",
+    build_file = "//third_party/aws-c-compression:aws-c-compression.BUILD",
+    sha256 = "703d1671e395ea26f8b0b70d678ed471421685a89e127f8aa125e2b2ecedb0e0",
+    strip_prefix = "aws-c-compression-0.2.17",
+    urls = [
+        "https://github.com/awslabs/aws-c-compression/archive/v0.2.17.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-c-http",
+    build_file = "//third_party/aws-c-http:aws-c-http.BUILD",
+    sha256 = "d2fb991e52388895aa78c5cc37f1e65f38b62ddf559539ca5f5dd513178f629b",
+    strip_prefix = "aws-c-http-0.7.11",
+    urls = [
+        "https://github.com/awslabs/aws-c-http/archive/v0.7.11.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-c-sdkutils",
+    build_file = "//third_party/aws-c-sdkutils:aws-c-sdkutils.BUILD",
+    sha256 = "826ec16225b8d001b52ba0a119852900b0b5f9ffe98a08b6f99182eb69a612d9",
+    strip_prefix = "aws-c-sdkutils-0.1.11",
+    urls = [
+        "https://github.com/awslabs/aws-c-sdkutils/archive/v0.1.11.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-c-auth",
+    build_file = "//third_party/aws-c-auth:aws-c-auth.BUILD",
+    sha256 = "aaad996eabf9d2f325f9f5be63f0077fe5c08368b87ae454a95f90ed4eed871c",
+    strip_prefix = "aws-c-auth-0.7.1",
+    urls = [
+        "https://github.com/awslabs/aws-c-auth/archive/v0.7.1.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-c-event-stream",
+    build_file = "//third_party/aws-c-event-stream:aws-c-event-stream.BUILD",
+    sha256 = "bdbc420efc2572689fb167ac288e982a01224876eb79d80e2411fad4c43e9dc0",
+    strip_prefix = "aws-c-event-stream-0.3.1",
+    urls = [
+        "https://github.com/awslabs/aws-c-event-stream/archive/v0.3.1.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-c-s3",
+    build_file = "//third_party/aws-c-s3:aws-c-s3.BUILD",
+    sha256 = "f2cc7fec8749a149f33b8286f7cc7586563b250b1576cf32cbd4f1ec226a5473",
+    strip_prefix = "aws-c-s3-0.3.14",
+    urls = [
+        "https://github.com/awslabs/aws-c-s3/archive/v0.3.14.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-crt-cpp",
+    build_file = "//third_party/aws-crt-cpp:aws-crt-cpp.BUILD",
+    sha256 = "687b756c9426da2128b7a1d4ef6776078c35c98904e145410c47bda1721821f1",
+    strip_prefix = "aws-crt-cpp-0.23.0",
+    urls = [
+        "https://github.com/awslabs/aws-crt-cpp/archive/v0.23.0.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "aws-sdk-cpp",
+    build_file = "//third_party/aws-sdk-cpp:aws-sdk-cpp.BUILD",
+    sha256 = "d5af564742f6029c1529c34efb8c93f7a43f60673925b3dfeb8ff4eaae6cc6e8",
+    strip_prefix = "aws-sdk-cpp-1.11.143",
+    urls = [
+        "https://github.com/aws/aws-sdk-cpp/archive/1.11.143.tar.gz",
+    ],
+)
