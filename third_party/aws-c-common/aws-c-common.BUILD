@@ -46,6 +46,9 @@ cc_library(
             "-framework",
             "CoreFoundation",
         ],
+        "@platforms//os:linux": [
+            "-ldl",
+        ],
         "//conditions:default": [],
     }),
     textual_hdrs = glob([
