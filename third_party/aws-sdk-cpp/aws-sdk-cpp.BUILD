@@ -162,13 +162,13 @@ cc_library(
 cc_library(
     name = "transfer",
     srcs = glob([
-        "generated/src/aws-cpp-sdk-transfer/source/transfer/*.cpp",  # TRANSFER_SOURCE
+        "src/aws-cpp-sdk-transfer/source/transfer/*.cpp",  # TRANSFER_SOURCE
     ]),
     hdrs = glob([
-        "generated/src/aws-cpp-sdk-transfer/include/aws/transfer/*.h",  # TRANSFER_HEADERS
+        "src/aws-cpp-sdk-transfer/include/aws/transfer/*.h",  # TRANSFER_HEADERS
     ]),
     includes = [
-        "generated/src/aws-cpp-sdk-transfer/include",
+        "src/aws-cpp-sdk-transfer/include",
     ],
     deps = [
         ":core",
